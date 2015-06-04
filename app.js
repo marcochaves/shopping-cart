@@ -1,8 +1,8 @@
 require([
-    'libs/text!header.html',
-    'libs/text!home.html',
-    'libs/text!footer.html'
-], function (headerTpl, homeTpl, footerTpl) {
+    'views/home',
+    'views/header',
+    'views/footer',
+], function (HomeView, HeaderView, FooterView) {
     var ApplicationRouter = Backbone.Router.extend({
         routes: {
             "": "home",
@@ -20,40 +20,6 @@ require([
         }
     });
 
-    HeaderView = Backbone.View.extend({
-        el: "#header",
-        templateFileName: "header.html",
-        template: headerTpl,
-
-        initialize: function() {
-            // $.get(this.templateFileName, function(data){console.log(data);this.template=data});
-        },
-        render: function() {
-            $(this.el).html(_.template(this.template));
-        }
-    });
-
-    FooterView = Backbone.View.extend({
-        el: "#footer",
-        template: footerTpl,
-        render: function() {
-            this.$el.html(_.template(this.template));
-        }
-    });
-
-    HomeView = Backbone.View.extend({
-        el: "#content",
-        // template: "home.html",
-        template: homeTpl,
-        initialize: function() {
-
-        },
-        render: function() {
-            $(this.el).html(_.template(this.template));
-        }
-    });
-
-
-   app = new ApplicationRouter();
+    app = new ApplicationRouter();
     Backbone.history.start();
 });
