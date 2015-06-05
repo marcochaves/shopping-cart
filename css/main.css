@@ -1,0 +1,7 @@
+.container {
+    width: 1024px;
+    margin: 50px auto;
+}
+.container .row {
+    margin-bottom: 20px;
+}

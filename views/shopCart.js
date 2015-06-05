@@ -1,11 +1,32 @@
 define([
     'libs/text!templates/shopCart.html'
-], function (shopCartTpl) {
+], function (tmpl) {
     return Backbone.View.extend({
         el: "#shopCart",
-        template: shopCartTpl,
+        // template helper, abstract later
+        template: (function () {
+            Mustache.parse(tmpl);
+            return function(data) {
+                return Mustache.render(tmpl, data);
+            };
+        })(),
+        initialize: function (opts) {
+            this.catalogItems = opts.catalogItems || [];
+        },
         render: function() {
-            this.$el.html(_.template(this.template));
-        }
+            var shopCartItems = this.hydrateModel(this.catalogItems);
+            var html = this.template({shopCartItems: shopCartItems});
+            this.$el.html(html);
+        },
+        hydrateModel: function (catalog) {
+            var model = this.model;
+            var shopCartItems = _(model.attributes).map(function (quantity, key) {
+                var itemData = catalog.findWhere({sku: key}).toJSON();
+                itemData.quantity = quantity;
+                return itemData;
+            });
+
+            return shopCartItems;
+        },
     });
 });

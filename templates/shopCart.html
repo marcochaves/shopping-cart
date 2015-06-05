@@ -1,3 +1,19 @@
 <div>
-    shopCart
+    {{#shopCartItems}}
+        <div>
+            {{sku}}
+        </div>
+        <div>
+            {{name}}
+        </div>
+        <div>
+            {{unitPrice}}
+        </div>
+        <div>
+            {{bulkPrice}}
+        </div>
+        <div>
+            {{quantity}}
+        </div>
+    {{/shopCartItems}}
 </div>
