@@ -1,9 +1,9 @@
 define([
-    'libs/text!templates/home.html'
-], function (homeTpl) {
+    'libs/text!templates/shopCatalog.html'
+], function (shopCatalogTpl) {
     return Backbone.View.extend({
-        el: "#content",
-        template: homeTpl,
+        el: "#shopCatalog",
+        template: shopCatalogTpl,
         initialize: function() {
         },
         render: function() {

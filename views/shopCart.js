@@ -1,9 +1,9 @@
 define([
-    'libs/text!templates/footer.html'
-], function (footerTpl) {
+    'libs/text!templates/shopCart.html'
+], function (shopCartTpl) {
     return Backbone.View.extend({
-        el: "#footer",
-        template: footerTpl,
+        el: "#shopCart",
+        template: shopCartTpl,
         render: function() {
             this.$el.html(_.template(this.template));
         }

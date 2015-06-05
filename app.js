@@ -1,22 +1,21 @@
 require([
-    'views/home',
-    'views/header',
-    'views/footer',
-], function (HomeView, HeaderView, FooterView) {
+    'views/shopCatalog',
+    'views/shopTerminal',
+    'views/shopCart',
+], function (ShopCatalog, ShopTerminalView, ShopCartView) {
     var ApplicationRouter = Backbone.Router.extend({
         routes: {
             "": "home",
-            "*actions": "home"
         },
         initialize: function() {
-            this.headerView = new HeaderView();
-            this.headerView.render();
-            this.footerView = new FooterView();
-            this.footerView.render();
+            this.shopTerminalView = new ShopTerminalView();
+            this.shopTerminalView.render();
+            this.shopCartView = new ShopCartView();
+            this.shopCartView.render();
+            this.shopCatalog = new ShopCatalog();
+            this.shopCatalog.render();
         },
         home: function() {
-            this.homeView = new HomeView();
-            this.homeView.render();
         }
     });
 

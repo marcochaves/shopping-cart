@@ -1,9 +1,9 @@
 define([
-    'libs/text!templates/header.html'
-], function (headerTpl) {
+    'libs/text!templates/shopTerminal.html'
+], function (shopTerminalTpl) {
     return Backbone.View.extend({
-        el: "#header",
-        template: headerTpl,
+        el: "#shopTerminal",
+        template: shopTerminalTpl,
         initialize: function() {
         },
         render: function() {
