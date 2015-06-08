@@ -1,21 +1,16 @@
 define([
+    'views/standardView',
     'libs/text!templates/shopCart.html'
-], function (tmpl) {
-    return Backbone.View.extend({
+], function (View, tmpl) {
+    return View.extend({
         el: "#shopCart",
-        // template helper, abstract later
-        template: (function () {
-            Mustache.parse(tmpl);
-            return function(data) {
-                return Mustache.render(tmpl, data);
-            };
-        })(),
+        template: tmpl,
         initialize: function (opts) {
             this.catalogItems = opts.catalogItems || [];
         },
         render: function() {
             var shopCartItems = this.hydrateModel(this.catalogItems);
-            var html = this.template({shopCartItems: shopCartItems});
+            var html = this.renderTemplate({shopCartItems: shopCartItems});
             this.$el.html(html);
         },
         hydrateModel: function (catalog) {
