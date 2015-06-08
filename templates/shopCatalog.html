@@ -1,3 +1,48 @@
+<h2>
+    Catalog
+</h2>
 <div>
-    shopCatalog
+    <ul>
+    {{#items}}
+            <li>
+                <div>
+                    <strong>sku:</strong>
+                    <span>
+                        {{sku}}
+                    </span>
+                </div>
+                <div>
+                    <strong>name:</strong>
+                    <span>
+                        {{name}}
+                    </span>
+                </div>
+                <div>
+                    <strong>unitPrice:</strong>
+                    <span>
+                        {{unitPrice}}
+                    </span>
+                </div>
+                {{#hasBulkPricing}}
+                    <strong>bulkPricing:</strong>
+                    <ul>
+                        {{#bulkPrice}}
+                            <li>
+                                <strong>minItems:</strong>
+                                <span>
+                                    {{minItems}}
+                                </span>
+                            </li>
+                            <li>
+                                <strong>price:</strong>
+                                <span>
+                                    {{price}}
+                                </span>
+                            </li>
+                        {{/bulkPrice}}
+                    </ul>
+                {{/hasBulkPricing}}
+            </li>
+        {{/items}}
+    </ul>
 </div>

@@ -1,27 +1,29 @@
 define([
     'views/standardView',
     'libs/text!templates/shopCart.html'
-], function (View, tmpl) {
-    return View.extend({
+], function (StandardView, tmpl) {
+    return StandardView.extend({
         el: "#shopCart",
         template: tmpl,
         initialize: function (opts) {
             this.catalogItems = opts.catalogItems || [];
         },
         render: function() {
-            var shopCartItems = this.hydrateModel(this.catalogItems);
-            var html = this.renderTemplate({shopCartItems: shopCartItems});
+            var catalogData = this.catalogItems.toJSON();
+            var modelData = this.hydrateModel(catalogData);
+            var html = this.renderTemplate(modelData);
             this.$el.html(html);
         },
-        hydrateModel: function (catalog) {
-            var model = this.model;
-            var shopCartItems = _(model.attributes).map(function (quantity, key) {
-                var itemData = catalog.findWhere({sku: key}).toJSON();
+        hydrateModel: function (catalogData) {
+            var modelData = this.model.toJSON();
+            var shopCartItems = _(modelData).map(function (quantity, key) {
+                var item = _(catalogData).findWhere({sku: key});
+                var itemData = this.hydrateCatalogItem(item);
                 itemData.quantity = quantity;
                 return itemData;
-            });
+            }.bind(this));
 
-            return shopCartItems;
+            return {shopCartItems: shopCartItems};
         },
     });
 });

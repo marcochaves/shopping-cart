@@ -6,5 +6,10 @@ define(function () {
             tmpl = tmpl || this.template;
             return Mustache.render(tmpl, data);
         },
+        hydrateCatalogItem: function (itemData) {
+            return _(itemData).defaults({
+                hasBulkPricing: !!itemData.bulkPrice,
+            });
+        },
     });
 });

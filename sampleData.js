@@ -5,7 +5,7 @@ define(function() {
             name: 'Shop Item A',
             unitPrice: 2,
             bulkPrice: {
-                minItmes: 3,
+                minItems: 3,
                 price: 1,
             },
         },

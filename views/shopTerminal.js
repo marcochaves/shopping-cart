@@ -1,15 +1,15 @@
 define([
+    'views/standardView',
     'libs/text!templates/shopTerminal.html'
-], function (shopTerminalTpl) {
-    var ShopTerminalView = Backbone.View.extend({
+], function (StandardView, shopTerminalTpl) {
+    var ShopTerminalView = StandardView.extend({
         el: "#shopTerminal",
         template: shopTerminalTpl,
-        initialize: function(opts) {
-            this.catalogItems = new Backbone.Collection(opts.shopCatalogItems);
-            this.shopCartItemCountPerSku = new Backbone.Model(opts.shopCartItemCountPerSku);
+        initialize: function() {
         },
         render: function() {
-            $(this.el).html(_.template(this.template));
+            var html = this.renderTemplate();
+            this.$el.html(html);
         },
     });
 

@@ -5,23 +5,28 @@ require([
     'sampleData',
 ], function (ShopCatalogView, ShopTerminalView, ShopCartView, sampleData) {
     var ApplicationRouter = Backbone.Router.extend({
-        routes: {
-            "": "home",
-        },
+        // routes: {
+        //     "": "home",
+        // },
         initialize: function() {
-            this.shopTerminalView = new ShopTerminalView(sampleData);
+            var data = sampleData;
 
-            // to keep things simple, keep these views flat instead of letting the shopTerminal own them,
-            // but let them share shopTerminal's models.
+            // init Models
+            this.catalogItems = new Backbone.Collection(data.shopCatalogItems);
+            this.shopCartItemCountPerSku = new Backbone.Model(data.shopCartItemCountPerSku);
+
+            //init Views
+            this.shopTerminalView = new ShopTerminalView();
+
             this.shopCatalogView = new ShopCatalogView({
-                collection: this.shopTerminalView.catalogItems,
+                collection: this.catalogItems,
             });
-
             this.shopCartView = new ShopCartView({
-                model: this.shopTerminalView.shopCartItemCountPerSku,
-                catalogItems: this.shopTerminalView.catalogItems,
+                model: this.shopCartItemCountPerSku,
+                catalogItems: this.catalogItems,
             });
 
+            // render views.  Keep it simple and don't nest views under an app view.
             this.shopCatalogView.render();
             this.shopCartView.render();
             this.shopTerminalView.render();
@@ -29,8 +34,8 @@ require([
             //temp expose for debugging;
             window.app = this;
         },
-        home: function() {
-        }
+        // home: function() {
+        // }
     });
 
     app = new ApplicationRouter();
