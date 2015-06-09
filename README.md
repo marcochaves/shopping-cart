@@ -1,11 +1,9 @@
-# Shopping Cart Sample Code
+# Shopping Cart Code Exercise
 
-Started from the 'Super Simple Backbone Starter Kit'
-https://github.com/azat-co/super-simple-backbone-starter-kit
+Started from the [Super Simple Backbone Starter Kit]
+(https://github.com/azat-co/super-simple-backbone-starter-kit)
 
-To run the app:
-
-No need to npm install or gulp, but please use a simple http server like
+To run the app, use a simple http server like:
 
 	http-server
 		https://www.npmjs.com/package/http-server
@@ -14,3 +12,5 @@ No need to npm install or gulp, but please use a simple http server like
 
 	SimpleHTTPServer
 		https://docs.python.org/2/library/simplehttpserver.html
+
+And hit localhost:8080 in your browser.  (or :8000 or whichever port you use).
