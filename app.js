@@ -5,38 +5,34 @@ require([
     'service',
 ], function (ShopCatalogView, ShopTerminalView, ShopCartView, service) {
     var ApplicationRouter = Backbone.Router.extend({
-        // routes: {
-        //     "": "home",
-        // },
+        routes: {
+            "": "home",
+        },
         initialize: function() {
-            // init Models
-            this.catalogItemCollection = service.catalogItemCollection;
-            this.shopCartItemsModel = service.shopCartItemsModel;
-
             //init Views
-            this.shopTerminalView = new ShopTerminalView({
-                // shopCartItemsModel: this.shopCartItemsModel,
-                // catalogItemCollection: this.catalogItemCollection,
+            var shopTerminalView = new ShopTerminalView({
+                terminal: service.terminal,
             });
-
-            this.shopCatalogView = new ShopCatalogView({
-                collection: this.catalogItemCollection,
+            var shopCatalogView = new ShopCatalogView({
+                collection: service.catalogItemCollection,
             });
-            this.shopCartView = new ShopCartView({
-                model: this.shopCartItemsModel,
-                catalogItemCollection: this.catalogItemCollection,
+            var shopCartView = new ShopCartView({
+                model: service.shopCartItemsModel,
+                catalogItemCollection: service.catalogItemCollection,
             });
 
             // render views.  Keep it simple and don't nest views under an app view.
-            this.shopCatalogView.render();
-            this.shopCartView.render();
-            this.shopTerminalView.render();
+            shopCatalogView.render();
+            shopCartView.render();
+            shopTerminalView.render();
 
-            //temp expose for debugging;
-            window.app = this;
+            // quick-and-dirty hook up to let view trigger up events to the terminal's api.
+            service.listenTo(shopCartView, 'scan', service.terminal.scan);
+
+            // expose the service's terminal
+            window.terminal = service.terminal;
         },
-        // home: function() {
-        // }
+        home: function() {}
     });
 
     app = new ApplicationRouter();

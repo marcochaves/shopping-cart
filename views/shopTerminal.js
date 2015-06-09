@@ -7,8 +7,7 @@ define([
         el: "#shopTerminal",
         template: shopTerminalTpl,
         initialize: function(opts) {
-            // this.catalogItems = opts.catalogItems || [];
-            // this.shopCartItemsModel = opts.shopCartItemsModel || {};
+            this.terminal = opts.terminal;
         },
         render: function() {
             // var catalogData = this.catalogItems.toJSON();

@@ -6,6 +6,9 @@ define([
     return StandardView.extend({
         el: "#shopCatalog",
         template: shopCatalogTpl,
+        events: {
+            'click .handle-quantity-adjust': 'quantityAdjust',
+        },
         initialize: function() {
         },
         render: function() {

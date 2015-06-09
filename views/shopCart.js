@@ -22,23 +22,15 @@ define([
         },
         quantityAdjust: function (e) {
             var sku;
-            var quantity;
-            var shouldIncr;
             var $el;
+            var adjustment;
             e.preventDefault();
 
             $el = $(e.currentTarget);
             sku = $el.data('sku');
             shouldDecr = $el.hasClass('handle-quantity-decr');
-
-            quantity = this.model.get(sku) || 0;
-            quantity += shouldDecr ? -1 : 1;
-
-            if (quantity < 1) {
-                this.model.unset(sku);
-            } else {
-                this.model.set(sku, quantity);
-            }
+            adjustment = shouldDecr ? -1 : 1;
+            this.trigger('scan', sku, adjustment);
         },
         hydrateModel: function (catalogData) {
             var modelData = this.model.toJSON();
