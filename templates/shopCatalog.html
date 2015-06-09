@@ -2,47 +2,24 @@
     Catalog
 </h2>
 <div>
-    <ul>
-    {{#items}}
-            <li>
-                <div>
-                    <strong>sku:</strong>
-                    <span>
-                        {{sku}}
-                    </span>
-                </div>
-                <div>
-                    <strong>name:</strong>
-                    <span>
-                        {{name}}
-                    </span>
-                </div>
-                <div>
-                    <strong>unitPrice:</strong>
-                    <span>
-                        {{unitPrice}}
-                    </span>
-                </div>
-                {{#hasBulkPricing}}
-                    <strong>bulkPricing:</strong>
-                    <ul>
-                        {{#bulkPrice}}
-                            <li>
-                                <strong>minItems:</strong>
-                                <span>
-                                    {{minItems}}
-                                </span>
-                            </li>
-                            <li>
-                                <strong>price:</strong>
-                                <span>
-                                    {{unitPrice}}
-                                </span>
-                            </li>
-                        {{/bulkPrice}}
-                    </ul>
-                {{/hasBulkPricing}}
-            </li>
-        {{/items}}
-    </ul>
+    <table class="table">
+        <thead>
+            <col width="30%">
+            <col width="30%">
+            <col width="40%">
+            <tr>
+                <th>Product Code</th>
+                <th>Name</th>
+                <th>Price</th>
+        </thead>
+        <tbody>
+            {{#items}}
+                <tr>
+                    <td>{{sku}}</td>
+                    <td>{{name}}</td>
+                    <td>{{priceDescription}}</td>
+                </tr>
+            {{/items}}
+        </tbody>
+    </table>
 </div>
