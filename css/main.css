@@ -8,7 +8,9 @@
 li {
     margin-bottom: 10px;
 }
-
+.shopCartView button {
+    margin-left: 10px;
+}
 tfoot td {
     font-weight: bold;
 }

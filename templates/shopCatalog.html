@@ -1,25 +1,34 @@
-<h2>
-    Catalog
-</h2>
-<div>
-    <table class="table">
-        <thead>
-            <col width="30%">
-            <col width="30%">
-            <col width="40%">
-            <tr>
-                <th>Product Code</th>
-                <th>Name</th>
-                <th>Price</th>
-        </thead>
-        <tbody>
-            {{#items}}
+<div class="shopCatalogView">
+    <h2>
+        Catalog
+    </h2>
+    <div>
+        <table class="table">
+            <thead>
+                <col width="30%">
+                <col width="30%">
+                <col width="40%">
                 <tr>
-                    <td>{{sku}}</td>
-                    <td>{{name}}</td>
-                    <td>{{priceDescription}}</td>
-                </tr>
-            {{/items}}
-        </tbody>
-    </table>
+                    <th>Product Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+            </thead>
+            <tbody>
+                {{#items}}
+                    <tr>
+                        <td>{{sku}}</td>
+                        <td>{{name}}</td>
+                        <td>{{priceDescription}}</td>
+                        <td>
+                            <div class="pull-right">
+                                <button class="btn btn-xs pull-left handle-quantity-adjust" data-sku="{{sku}}">
+                                    <span>Add to Cart</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {{/items}}
+            </tbody>
+        </table>
+    </div>
 </div>

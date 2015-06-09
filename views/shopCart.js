@@ -6,14 +6,39 @@ define([
     return StandardView.extend({
         el: "#shopCart",
         template: tmpl,
+        events: {
+            'click .handle-quantity-adjust': 'quantityAdjust',
+        },
         initialize: function (opts) {
             this.catalogItems = opts.catalogItems || [];
+
+            this.listenTo(this.model, 'change', this.render);
         },
         render: function() {
             var catalogData = this.catalogItems.toJSON();
             var modelData = this.hydrateModel(catalogData);
             var html = this.renderTemplate(modelData);
             this.$el.html(html);
+        },
+        quantityAdjust: function (e) {
+            var sku;
+            var quantity;
+            var shouldIncr;
+            var $el;
+            e.preventDefault();
+
+            $el = $(e.currentTarget);
+            sku = $el.data('sku');
+            shouldDecr = $el.hasClass('handle-quantity-decr');
+
+            quantity = this.model.get(sku) || 0;
+            quantity += shouldDecr ? -1 : 1;
+
+            if (quantity < 1) {
+                this.model.unset(sku);
+            } else {
+                this.model.set(sku, quantity);
+            }
         },
         hydrateModel: function (catalogData) {
             var modelData = this.model.toJSON();

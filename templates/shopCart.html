@@ -1,31 +1,44 @@
-<h2>
-    Shopping Cart
-</h2>
-<div>
-    <table class="table">
-        <thead>
-            <col width="50%">
-            <col width="50%">
-            <tr>
-                <th>Product Code</th>
-                <th>Quantity</th>
-                <th class="text-right">Price</th>
-        </thead>
-        <tbody>
-            {{#shopCartItems}}
+<div class="shopCartView">
+    <h2>
+        Shopping Cart
+    </h2>
+    <div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{sku}}</td>
-                    <td>{{quantity}}</td>
-                    <td class="text-right">{{priceDescription}}</td>
+                    <th>Product Code</th>
+                    <th>Quantity</th>
+                    <th class="text-right">Price</th>
                 </tr>
-            {{/shopCartItems}}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td>Total</td>
-                <td></td>
-                <td class="text-right">{{totalPriceDescription}}</td>
-            </tr>
-        </tfoot>
-    </table>
+            </thead>
+            <tbody>
+                {{#shopCartItems}}
+                    <tr>
+                        <td>{{sku}}</td>
+                        <td>
+                            <span class="pull-left">
+                                {{quantity}}
+                            </span>
+                            <div class="pull-right">
+                                <button class="btn btn-xs pull-left handle-quantity-adjust" data-sku="{{sku}}">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn btn-xs pull-left handle-quantity-adjust handle-quantity-decr" data-sku="{{sku}}">
+                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </td>
+                        <td class="text-right">{{priceDescription}}</td>
+                    </tr>
+                {{/shopCartItems}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td class="text-right">{{totalPriceDescription}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
