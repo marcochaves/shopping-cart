@@ -40,5 +40,19 @@ define(function() {
     return {
         shopCatalogItems: shopCatalogItems,
         shopCartItemsPerSku: shopCartItemsPerSku,
+        tests: [
+            {
+                scans: ['A','B','C','D','A','B','A','A'],
+                total: 32.40,
+            },
+            {
+                scans: ['C','C','C','C','C','C','C'],
+                total: 7.25,
+            },
+            {
+                scans: ['A', 'B', 'C', 'D'],
+                total: 15.40,
+            },
+        ],
     };
 });

@@ -8,6 +8,7 @@ define([
 
     // an object to hold a quick-and-dirty interface
     var terminal = {
+
         /*
          * Scans an item into the cart
          * optAmount defaults to 1, but it can be any integer including a negative.
@@ -34,15 +35,27 @@ define([
             }
             return model;
         },
+
         /*
          * Clears the cart
         */
         clear: function () {
             shopCartItemsModel.clear();
         },
+
+        /*
+         * Checks the cart's price
+        */
+        checkPrice: function () {
+            var catalogData = catalogItemCollection.toJSON();
+            var shoppingCartData = shopCartItemsModel.toJSON();
+            var shopCartItems = utils.hydrateShopCartItems(shoppingCartData, catalogData);
+            var totalPrice = utils.calcTotalPrice(shopCartItems);
+            return totalPrice;
+        },
+
         /*
          * Runs a sample checkout
-         * (quick-and-dirty-unit testing)
         */
         checkout: function (skus) {
             terminal.clear();
@@ -50,9 +63,23 @@ define([
             _(skus).each(function (sku) {
                 terminal.scan(sku);
             });
+        },
 
-            var x = utils.calcTotalPrice(shopCartItemsModel.toJSON());
-            debugger;
+        /*
+         * Runs some tests.
+         * (quick-and-dirty-unit testing)
+        */
+        test: function () {
+            var tests = sampleData.tests;
+            _(tests).each(function (test) {
+                var totalPrice;
+                terminal.checkout(test.scans);
+                totalPrice = terminal.checkPrice();
+                if (test.total !== totalPrice) {
+                    throw 'Test failed!  The price should be ' + test.total + ' but is ' + totalPrice;
+                }
+            });
+            alert('tests passed!');
         },
     };
 
