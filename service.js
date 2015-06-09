@@ -67,7 +67,7 @@ define([
 
         /*
          * Runs some tests.
-         * (quick-and-dirty-unit testing)
+         * (quick-and-dirty pseudo unit testing)
         */
         test: function () {
             var tests = sampleData.tests;
@@ -86,7 +86,7 @@ define([
     return _({}).extend(Backbone.Events, {
         // just expose the models directly to keep it simple.
         // let the views edit and listen to the shared models rather than abstracting to a proper async api
-        // If this were a more proper app we'd protect against sharing this much scope with direct access.
+        // If this were a more proper app we might protect more against leaking this much scope.
         catalogItemCollection: catalogItemCollection,
         shopCartItemsModel: shopCartItemsModel,
         terminal: terminal,

@@ -1,4 +1,3 @@
-// Note: Some folks prefer using a pattern like mixins instead of inheritence.
 define(function () {
     return Backbone.View.extend({
         renderTemplate: function(data, tmpl) {

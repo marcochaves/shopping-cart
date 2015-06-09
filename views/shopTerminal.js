@@ -8,7 +8,7 @@ define([
     var ShopTerminalView = StandardView.extend({
         el: "#shopTerminal",
         template: shopTerminalTpl,
-        initialize: function(opts) {},
+        initialize: function() {},
         render: function() {
             var html = this.renderTemplate();
             this.$el.html(html);
