@@ -3,23 +3,16 @@ define([
     'views/standardView',
     'libs/text!templates/shopTerminal.html',
 ], function (utils, StandardView, shopTerminalTpl) {
+
+    // Just instructions for using the terminal in the console.
     var ShopTerminalView = StandardView.extend({
         el: "#shopTerminal",
         template: shopTerminalTpl,
-        initialize: function(opts) {
-            this.terminal = opts.terminal;
-        },
+        initialize: function(opts) {},
         render: function() {
-            // var catalogData = this.catalogItems.toJSON();
-            // var shopCartItemsModel = this.shopCartItemsModel.toJSON();
-            // var shopCartItemsData = this.hydrateShopCartData(shopCartItemsModel, catalogData);
-
-            var data = {
-                // totalPriceDescription: this.getTotalPriceDescription(shopCartItemsData),
-            }
-            var html = this.renderTemplate(data);
+            var html = this.renderTemplate();
             this.$el.html(html);
-        }
+        },
     });
 
     return ShopTerminalView;

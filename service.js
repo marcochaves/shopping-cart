@@ -39,10 +39,19 @@ define([
                     model.set(sku, newQuantity);
                 }
             },
+            /*
+             * Clears the cart
+            */
             clear: function () {
                 shopCartItemsModel.clear();
             },
-            // todo: implement interface to edit the catalog...
+            /*
+             * Runs a sample checkout
+             * (quick-and-dirty-unit testing)
+            */
+            clear: function () {
+                shopCartItemsModel.clear();
+            },
         }
     });
 });

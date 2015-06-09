@@ -14,3 +14,6 @@ li {
 tfoot td {
     font-weight: bold;
 }
+.shopTerminalView div{
+    margin-bottom: 20px;
+}

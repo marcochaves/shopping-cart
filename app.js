@@ -10,9 +10,7 @@ require([
         },
         initialize: function() {
             //init Views
-            var shopTerminalView = new ShopTerminalView({
-                terminal: service.terminal,
-            });
+            var shopTerminalView = new ShopTerminalView();
             var shopCatalogView = new ShopCatalogView({
                 collection: service.catalogItemCollection,
             });
@@ -28,6 +26,7 @@ require([
 
             // quick-and-dirty hook up to let view trigger up events to the terminal's api.
             service.listenTo(shopCartView, 'scan', service.terminal.scan);
+            service.listenTo(shopCatalogView, 'scan', service.terminal.scan);
 
             // expose the service's terminal
             window.terminal = service.terminal;

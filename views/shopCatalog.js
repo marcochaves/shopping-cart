@@ -7,9 +7,10 @@ define([
         el: "#shopCatalog",
         template: shopCatalogTpl,
         events: {
-            'click .handle-quantity-adjust': 'quantityAdjust',
+            'click .handle-add-to-cart': 'addToCart',
         },
         initialize: function() {
+            this.listenTo(this.collection, 'change', this.render);
         },
         render: function() {
             var itemsData = this.collection.map(function (item) {
@@ -18,6 +19,15 @@ define([
             }.bind(this));
             var html = this.renderTemplate({items: itemsData});
             this.$el.html(html);
+        },
+        addToCart: function (e) {
+            var sku;
+            var $el;
+            e.preventDefault();
+
+            $el = $(e.currentTarget);
+            sku = $el.data('sku');
+            this.trigger('scan', sku, 1);
         },
     });
 });

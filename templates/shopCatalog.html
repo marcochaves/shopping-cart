@@ -12,6 +12,7 @@
                     <th>Product Code</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th></th>
             </thead>
             <tbody>
                 {{#items}}
@@ -21,7 +22,7 @@
                         <td>{{priceDescription}}</td>
                         <td>
                             <div class="pull-right">
-                                <button class="btn btn-xs pull-left handle-quantity-adjust" data-sku="{{sku}}">
+                                <button class="btn btn-xs pull-left handle-add-to-cart" data-sku="{{sku}}">
                                     <span>Add to Cart</span>
                                 </button>
                             </div>
