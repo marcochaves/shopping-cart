@@ -34,6 +34,40 @@ define(function () {
                 priceDescription: utils.getPriceDescription(itemData),
             });
         },
+        hydrateShopCartItems: function (shopCartModelData, catalogData) {
+            var shopCartItems = _(shopCartModelData).map(function (quantity, key) {
+                var item = _(catalogData).findWhere({sku: key});
+                var itemData = utils.hydrateCatalogItem(item);
+
+                itemData.quantity = quantity;
+                itemData.priceDescription = utils.formatMoney(utils.calcTotalItemPrice(itemData));
+
+                return itemData;
+            });
+            return shopCartItems;
+        },
+        calcTotalItemPrice: function (itemData) {
+            var bulk;
+            var loosies;
+
+            if (!itemData.hasBulkPricing) {
+                return itemData.quantity * itemData.unitPrice;
+            }
+
+            loosies = itemData.quantity % itemData.bulkPrice.minItems;
+            bulk = itemData.quantity - loosies;
+
+            return (bulk * itemData.bulkPrice.unitPrice) + (loosies * itemData.unitPrice);
+        },
+        calcTotalPrice: function (shopCartItemsData) {
+            var totalPrice = _(shopCartItemsData)
+                .map(utils.calcTotalItemPrice)
+                .reduce(function (memo, num) {
+                    return memo + num;
+                }, 0);
+
+            return totalPrice;
+        },
     };
 
     return utils;
