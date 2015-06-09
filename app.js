@@ -10,21 +10,21 @@ require([
         // },
         initialize: function() {
             // init Models
-            this.catalogItems = service.catalogItems;
-            this.shopCartItemCountPerSku = service.shopCartItemCountPerSku;
+            this.catalogItemCollection = service.catalogItemCollection;
+            this.shopCartItemsModel = service.shopCartItemsModel;
 
             //init Views
             this.shopTerminalView = new ShopTerminalView({
-                // shopCartItemCountPerSku: this.shopCartItemCountPerSku,
-                // catalogItems: this.catalogItems,
+                // shopCartItemsModel: this.shopCartItemsModel,
+                // catalogItemCollection: this.catalogItemCollection,
             });
 
             this.shopCatalogView = new ShopCatalogView({
-                collection: this.catalogItems,
+                collection: this.catalogItemCollection,
             });
             this.shopCartView = new ShopCartView({
-                model: this.shopCartItemCountPerSku,
-                catalogItems: this.catalogItems,
+                model: this.shopCartItemsModel,
+                catalogItemCollection: this.catalogItemCollection,
             });
 
             // render views.  Keep it simple and don't nest views under an app view.

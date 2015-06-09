@@ -8,12 +8,12 @@ define([
         template: shopTerminalTpl,
         initialize: function(opts) {
             // this.catalogItems = opts.catalogItems || [];
-            // this.shopCartItemCountPerSku = opts.shopCartItemCountPerSku || {};
+            // this.shopCartItemsModel = opts.shopCartItemsModel || {};
         },
         render: function() {
             // var catalogData = this.catalogItems.toJSON();
-            // var shopCartItemCountPerSku = this.shopCartItemCountPerSku.toJSON();
-            // var shopCartItemsData = this.hydrateShopCartData(shopCartItemCountPerSku, catalogData);
+            // var shopCartItemsModel = this.shopCartItemsModel.toJSON();
+            // var shopCartItemsData = this.hydrateShopCartData(shopCartItemsModel, catalogData);
 
             var data = {
                 // totalPriceDescription: this.getTotalPriceDescription(shopCartItemsData),

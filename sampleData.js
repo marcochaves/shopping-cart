@@ -16,13 +16,13 @@ define(function() {
         },
     ];
 
-    var shopCartItemCountPerSku = {
+    var shopCartItemsPerSku = {
         A: 1,
         B: 4,
     };
 
     return {
         shopCatalogItems: shopCatalogItems,
-        shopCartItemCountPerSku: shopCartItemCountPerSku,
+        shopCartItemsPerSku: shopCartItemsPerSku,
     };
 });

@@ -10,12 +10,12 @@ define([
             'click .handle-quantity-adjust': 'quantityAdjust',
         },
         initialize: function (opts) {
-            this.catalogItems = opts.catalogItems || [];
+            this.catalogItemCollection = opts.catalogItemCollection || [];
 
             this.listenTo(this.model, 'change', this.render);
         },
         render: function() {
-            var catalogData = this.catalogItems.toJSON();
+            var catalogData = this.catalogItemCollection.toJSON();
             var modelData = this.hydrateModel(catalogData);
             var html = this.renderTemplate(modelData);
             this.$el.html(html);
@@ -83,8 +83,8 @@ define([
             var totalPrice = this.calcTotalPrice(shopCartItemsData);
             return utils.formatMoney(totalPrice);
         },
-        hydrateShopCartData: function (shopCartItemCountPerSku, catalogData) {
-            var items = _(shopCartItemCountPerSku).map(function (quantity, key) {
+        hydrateShopCartData: function (shopCartItemsModel, catalogData) {
+            var items = _(shopCartItemsModel).map(function (quantity, key) {
                 var item = _(catalogData).findWhere({sku: key});
                 var itemData = utils.hydrateCatalogItem(item);
                 itemData.quantity = quantity;
