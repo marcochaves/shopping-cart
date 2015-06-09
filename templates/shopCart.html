@@ -8,23 +8,23 @@
             <col width="50%">
             <tr>
                 <th>Product Code</th>
-                <th>Price</th>
-                <th class="text-right">Quantity</th>
+                <th>Quantity</th>
+                <th class="text-right">Price</th>
         </thead>
         <tbody>
             {{#shopCartItems}}
                 <tr>
                     <td>{{sku}}</td>
-                    <td>{{priceDescription}}</td>
-                    <td class="text-right">{{quantity}}</td>
+                    <td>{{quantity}}</td>
+                    <td class="text-right">{{priceDescription}}</td>
                 </tr>
             {{/shopCartItems}}
         </tbody>
         <tfoot>
             <tr>
+                <td>Total</td>
                 <td></td>
-                <td>{{totalPriceDescription}}</td>
-                <td class="text-right">totalQuan</td>
+                <td class="text-right">{{totalPriceDescription}}</td>
             </tr>
         </tfoot>
     </table>

@@ -20,7 +20,10 @@ define([
             var shopCartItems = _(modelData).map(function (quantity, key) {
                 var item = _(catalogData).findWhere({sku: key});
                 var itemData = utils.hydrateCatalogItem(item);
+
                 itemData.quantity = quantity;
+                itemData.priceDescription = utils.formatMoney(this.calcTotalItemPrice(itemData));
+
                 return itemData;
             }.bind(this));
 
@@ -29,22 +32,25 @@ define([
                 totalPriceDescription: this.getTotalPriceDescription(shopCartItems),
             };
         },
+        calcTotalItemPrice: function (item) {
+            var bulk;
+            var loosies;
+
+            if (!item.hasBulkPricing) {
+                return item.quantity * item.unitPrice;
+            }
+
+            loosies = item.quantity % item.bulkPrice.minItems;
+            bulk = item.quantity - loosies;
+
+            return (bulk * item.bulkPrice.unitPrice) + (loosies * item.unitPrice);
+        },
         calcTotalPrice: function (shopCartItemsData) {
-            var totalPrice = _(shopCartItemsData).map(function (item) {
-                var bulk;
-                var loosies;
-
-                if (!item.hasBulkPricing) {
-                    return item.quantity * item.unitPrice;
-                }
-
-                loosies = item.quantity % item.bulkPrice.minItems;;
-                bulk = item.quantity - loosies;
-
-                return (bulk * item.bulkPrice.unitPrice) + (loosies * item.unitPrice);
-            }).reduce(function (memo, num) {
-                return memo + num;
-            }, 0);
+            var totalPrice = _(shopCartItemsData)
+                .map(this.calcTotalItemPrice)
+                .reduce(function (memo, num) {
+                    return memo + num;
+                }, 0);
 
             return totalPrice;
         },
