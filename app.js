@@ -16,7 +16,10 @@ require([
             this.shopCartItemCountPerSku = new Backbone.Model(data.shopCartItemCountPerSku);
 
             //init Views
-            this.shopTerminalView = new ShopTerminalView();
+            this.shopTerminalView = new ShopTerminalView({
+                shopCartItemCountPerSku: this.shopCartItemCountPerSku,
+                catalogItems: this.catalogItems,
+            });
 
             this.shopCatalogView = new ShopCatalogView({
                 collection: this.catalogItems,

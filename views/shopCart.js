@@ -1,7 +1,8 @@
 define([
     'views/standardView',
-    'libs/text!templates/shopCart.html'
-], function (StandardView, tmpl) {
+    'utils',
+    'libs/text!templates/shopCart.html',
+], function (StandardView, utils, tmpl) {
     return StandardView.extend({
         el: "#shopCart",
         template: tmpl,
@@ -18,7 +19,7 @@ define([
             var modelData = this.model.toJSON();
             var shopCartItems = _(modelData).map(function (quantity, key) {
                 var item = _(catalogData).findWhere({sku: key});
-                var itemData = this.hydrateCatalogItem(item);
+                var itemData = utils.hydrateCatalogItem(item);
                 itemData.quantity = quantity;
                 return itemData;
             }.bind(this));
