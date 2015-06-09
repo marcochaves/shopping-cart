@@ -1,8 +1,8 @@
 define([
-    'views/standardView',
     'utils',
+    'views/standardView',
     'libs/text!templates/shopCart.html',
-], function (StandardView, utils, tmpl) {
+], function (utils, StandardView, tmpl) {
     return StandardView.extend({
         el: "#shopCart",
         template: tmpl,

@@ -2,23 +2,21 @@ require([
     'views/shopCatalog',
     'views/shopTerminal',
     'views/shopCart',
-    'sampleData',
-], function (ShopCatalogView, ShopTerminalView, ShopCartView, sampleData) {
+    'service',
+], function (ShopCatalogView, ShopTerminalView, ShopCartView, service) {
     var ApplicationRouter = Backbone.Router.extend({
         // routes: {
         //     "": "home",
         // },
         initialize: function() {
-            var data = sampleData;
-
             // init Models
-            this.catalogItems = new Backbone.Collection(data.shopCatalogItems);
-            this.shopCartItemCountPerSku = new Backbone.Model(data.shopCartItemCountPerSku);
+            this.catalogItems = service.catalogItems;
+            this.shopCartItemCountPerSku = service.shopCartItemCountPerSku;
 
             //init Views
             this.shopTerminalView = new ShopTerminalView({
-                shopCartItemCountPerSku: this.shopCartItemCountPerSku,
-                catalogItems: this.catalogItems,
+                // shopCartItemCountPerSku: this.shopCartItemCountPerSku,
+                // catalogItems: this.catalogItems,
             });
 
             this.shopCatalogView = new ShopCatalogView({

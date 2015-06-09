@@ -1,18 +1,18 @@
 define([
-    'views/standardView',
     'utils',
+    'views/standardView',
     'libs/text!templates/shopTerminal.html',
-], function (StandardView, utils, shopTerminalTpl) {
+], function (utils, StandardView, shopTerminalTpl) {
     var ShopTerminalView = StandardView.extend({
         el: "#shopTerminal",
         template: shopTerminalTpl,
         initialize: function(opts) {
-            this.catalogItems = opts.catalogItems || [];
-            this.shopCartItemCountPerSku = opts.shopCartItemCountPerSku || {};
+            // this.catalogItems = opts.catalogItems || [];
+            // this.shopCartItemCountPerSku = opts.shopCartItemCountPerSku || {};
         },
         render: function() {
-            var catalogData = this.catalogItems.toJSON();
-            var shopCartItemCountPerSku = this.shopCartItemCountPerSku.toJSON();
+            // var catalogData = this.catalogItems.toJSON();
+            // var shopCartItemCountPerSku = this.shopCartItemCountPerSku.toJSON();
             // var shopCartItemsData = this.hydrateShopCartData(shopCartItemCountPerSku, catalogData);
 
             var data = {
